@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+/* Corregir el texto duplicado en el selector de fuentes */
+.ql-snow .ql-picker.ql-font .ql-picker-label::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="neue-plak"]::before {
+  content: "Neue Plak" !important;
+  font-family: "Neue Plak", sans-serif !important;
+}
+
+/* Limpiar cualquier texto adicional en el selector */
+.ql-snow .ql-picker.ql-font .ql-picker-label {
+  font-family: 'Neue Plak', sans-serif !important;
+}
+
+/* Importante: Eliminar cualquier contenido preexistente */
+.ql-snow .ql-picker.ql-font .ql-picker-label {
+  color: transparent;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label::before {
+  color: black;
+  position: absolute;
+  left: 8px;
+}
+
+/* Asegurarse de que solo se muestre "Neue Plak" una vez */
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="neue-plak"] {
+  color: transparent;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="neue-plak"]::before {
+  color: black;
+  position: absolute;
+  left: 8px;
+}

@@ -12,7 +12,25 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    QuillModule.forRoot()  // Sin configuración personalizada, usar todo por defecto
+    QuillModule.forRoot({
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline', 'strike'],
+          ['blockquote', 'code-block'],
+          [{ 'header': 1 }, { 'header': 2 }],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'script': 'sub'}, { 'script': 'super' }],
+          [{ 'indent': '-1'}, { 'indent': '+1' }],
+          [{ 'direction': 'rtl' }],
+          [{ 'size': ['small', false, 'large', 'huge'] }],
+          [{ 'font': ['neue-plak'] }], // Limitar a nuestra fuente
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'align': [] }],
+          ['clean'],
+          ['link', 'image']
+        ]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

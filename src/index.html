@@ -2,12 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>QuillPocNg10V1</title>
+  <title>QuillPocNg10V2</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    /* Estilos críticos para forzar Neue Plak inmediatamente */
+    body, * {
+      font-family: 'Neue Plak', sans-serif;
+    }
+  </style>
 </head>
 <body>
   <app-root></app-root>
+  
+  <script>
+    // Script para forzar la fuente Neue Plak en los selectores de Quill
+    window.addEventListener('load', function() {
+      // Ejecutamos la función varias veces para asegurarnos de que se aplique
+      // después de que todos los componentes de Angular se hayan inicializado
+      const configureFont = function() {
+        try {
+          // Configurar todos los selectores de fuentes
+          const fontSelectors = document.querySelectorAll('.ql-font');
+          fontSelectors.forEach(function(selector) {
+            // Configurar la etiqueta del selector
+            const label = selector.querySelector('.ql-picker-label');
+            if (label) {
+              label.setAttribute('data-value', 'neue-plak');
+              label.dataset.value = 'neue-plak';
+              if (label.textContent !== 'Neue Plak') {
+                label.textContent = 'Neue Plak';
+              }
+            }
+            
+            // Configurar los elementos del dropdown
+            const items = selector.querySelectorAll('.ql-picker-item');
+            items.forEach(function(item) {
+              if (item.getAttribute('data-value') === 'neue-plak') {
+                item.setAttribute('data-selected', 'true');
+                item.textContent = 'Neue Plak';
+              }
+            });
+          });
+          
+          // Asegurarnos que el editor use nuestra fuente
+          document.querySelectorAll('.ql-editor').forEach(function(editor) {
+            editor.classList.add('ql-font-neue-plak');
+          });
+        } catch (e) {
+          console.log('Error configurando fuente:', e);
+        }
+      };
+      
+      // Ejecutamos varias veces para cubrir el tiempo de carga
+      setTimeout(configureFont, 100);
+      setTimeout(configureFont, 500);
+      setTimeout(configureFont, 1000);
+      setTimeout(configureFont, 2000);
+    });
+  </script>
+
+  <script>
+    // Función para corregir el selector de fuentes
+function fixFontSelector() {
+  const fontSelectors = document.querySelectorAll('.ql-font.ql-picker');
+  fontSelectors.forEach(selector => {
+    // Limpiar la etiqueta del selector
+    const label = selector.querySelector('.ql-picker-label');
+    if (label) {
+      // Vaciar cualquier contenido de texto directo
+      label.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          node.nodeValue = '';
+        }
+      });
+      
+      // Establecer el atributo data-value
+      label.setAttribute('data-value', 'neue-plak');
+    }
+    
+    // Ajustar los elementos del dropdown
+    const items = selector.querySelectorAll('.ql-picker-item');
+    items.forEach(item => {
+      if (item.getAttribute('data-value') === 'neue-plak') {
+        // Vaciar cualquier contenido de texto directo
+        item.childNodes.forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            node.nodeValue = '';
+          }
+        });
+      }
+    });
+  });
+}
+
+// Ejecutar la función en diferentes momentos para asegurar que se aplique
+setTimeout(fixFontSelector, 100);
+setTimeout(fixFontSelector, 500);
+setTimeout(fixFontSelector, 1000);
+
+  </script>
+
 </body>
 </html>

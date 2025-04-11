@@ -2,9 +2,11 @@
   <h1>{{ title }}</h1>
   
   <div class="editor-wrapper">
-    <!-- Editor con configuración por defecto -->
     <quill-editor
       [(ngModel)]="editorContent"
+      [modules]="quillConfig.modules"
+      [styles]="{height: '250px'}"
+      [theme]="'snow'"
       (onContentChanged)="onEditorContentChange($event)">
     </quill-editor>
   </div>

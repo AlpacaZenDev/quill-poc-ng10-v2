@@ -1,47 +1,85 @@
 .editor-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .editor-wrapper {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  /* Estilos para el botón de guardar */
-  .editor-actions {
-    margin-top: 20px;
-    text-align: right;
-  }
-  
-  .save-button {
-    background-color: #4285f4;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  
-  .save-button:hover {
-    background-color: #3367d6;
-  }
-  
-  /* Estilos para la vista previa */
-  .content-preview {
-    margin-top: 30px;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-  }
-  
-  .content-preview h3 {
-    margin-top: 0;
-    color: #555;
-    font-size: 16px;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Neue Plak', sans-serif;
+}
+
+.editor-wrapper {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Forzar el uso de Neue Plak en el editor */
+.ql-editor {
+  font-family: 'Neue Plak', sans-serif !important;
+}
+
+/* Asegurar que todo el contenido dentro del editor use Neue Plak */
+.ql-editor * {
+  font-family: 'Neue Plak', sans-serif !important;
+}
+
+/* Estilos para el botón de guardar */
+.editor-actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.save-button {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Neue Plak', sans-serif;
+}
+
+.save-button:hover {
+  background-color: #3367d6;
+}
+
+/* Estilos para la vista previa */
+.content-preview {
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  font-family: 'Neue Plak', sans-serif;
+}
+
+.content-preview h3 {
+  margin-top: 0;
+  color: #555;
+  font-size: 16px;
+  font-family: 'Neue Plak', sans-serif;
+}
+
+/* Personalización del selector de fuentes */
+.ql-picker.ql-font .ql-picker-label::before,
+.ql-picker.ql-font .ql-picker-item::before {
+  content: 'Neue Plak' !important;
+}
+
+/* Ocultar otras opciones en el selector de fuentes */
+.ql-picker.ql-font .ql-picker-item:not([data-value="neue-plak"]) {
+  display: none !important;
+}
+
+/* Forzar que todas las opciones de fuente se muestren como Neue Plak */
+.ql-picker.ql-font .ql-picker-label,
+.ql-picker.ql-font .ql-picker-label::before,
+.ql-picker.ql-font .ql-picker-item,
+.ql-picker.ql-font .ql-picker-item::before {
+  font-family: 'Neue Plak', sans-serif !important;
+}
+
+/* Clase específica para Quill */
+.ql-font-neue-plak {
+  font-family: 'Neue Plak', sans-serif !important;
+}
