@@ -61,25 +61,26 @@
 }
 
 /* Personalización del selector de fuentes */
-.ql-picker.ql-font .ql-picker-label::before,
-.ql-picker.ql-font .ql-picker-item::before {
-  content: 'Neue Plak' !important;
+.ql-snow .ql-picker.ql-font .ql-picker-label::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="neue-plak"]::before {
+  content: "Neue Plak" !important;
+  font-family: "Neue Plak", sans-serif !important;
 }
 
 /* Ocultar otras opciones en el selector de fuentes */
-.ql-picker.ql-font .ql-picker-item:not([data-value="neue-plak"]) {
+.ql-snow .ql-picker.ql-font .ql-picker-item:not([data-value="neue-plak"]) {
   display: none !important;
 }
 
 /* Forzar que todas las opciones de fuente se muestren como Neue Plak */
-.ql-picker.ql-font .ql-picker-label,
-.ql-picker.ql-font .ql-picker-label::before,
-.ql-picker.ql-font .ql-picker-item,
-.ql-picker.ql-font .ql-picker-item::before {
+.ql-snow .ql-picker.ql-font .ql-picker-label,
+.ql-snow .ql-picker.ql-font .ql-picker-label::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item,
+.ql-snow .ql-picker.ql-font .ql-picker-item::before {
   font-family: 'Neue Plak', sans-serif !important;
 }
 
-/* Clase específica para Quill */
-.ql-font-neue-plak {
-  font-family: 'Neue Plak', sans-serif !important;
+/* Eliminar cualquier contenido problemático */
+.ql-picker-label::after {
+  content: none !important;
 }

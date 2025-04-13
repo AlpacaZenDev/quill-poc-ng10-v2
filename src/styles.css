@@ -1,33 +1,54 @@
-/* Corregir el texto duplicado en el selector de fuentes */
-.ql-snow .ql-picker.ql-font .ql-picker-label::before,
-.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="neue-plak"]::before {
-  content: "Neue Plak" !important;
-  font-family: "Neue Plak", sans-serif !important;
-}
-
-/* Limpiar cualquier texto adicional en el selector */
-.ql-snow .ql-picker.ql-font .ql-picker-label {
-  font-family: 'Neue Plak', sans-serif !important;
-}
-
-/* Importante: Eliminar cualquier contenido preexistente */
-.ql-snow .ql-picker.ql-font .ql-picker-label {
-  color: transparent;
-}
-
-.ql-snow .ql-picker.ql-font .ql-picker-label::before {
-  color: black;
-  position: absolute;
-  left: 8px;
-}
-
-/* Asegurarse de que solo se muestre "Neue Plak" una vez */
-.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="neue-plak"] {
-  color: transparent;
-}
-
-.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="neue-plak"]::before {
-  color: black;
-  position: absolute;
-  left: 8px;
-}
+/* Definición de fuentes Neue Plak */
+@font-face {
+    font-family: 'Neue Plak';
+    src: url('./assets/fonts/Neue Plak Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Neue Plak';
+    src: url('./assets/fonts/Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Neue Plak';
+    src: url('./assets/fonts/Neue Plak Text Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Neue Plak';
+    src: url('./assets/fonts/Neue Plak Text Bold Italic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  /* Estilos específicos para Quill */
+  .ql-font-neue-plak {
+    font-family: 'Neue Plak', sans-serif !important;
+  }
+  
+  /* Corrección para el selector de fuentes en Quill */
+  .ql-snow .ql-picker.ql-font .ql-picker-label::before,
+  .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="neue-plak"]::before {
+    content: "Neue Plak" !important;
+    font-family: "Neue Plak", sans-serif !important;
+  }
+  
+  /* Hacer que el selector de fuentes muestre correctamente el texto */
+  .ql-snow .ql-picker.ql-font .ql-picker-label {
+    font-family: 'Neue Plak', sans-serif !important;
+  }
+  
+  /* Asegurar que solo se muestre la opción Neue Plak */
+  .ql-snow .ql-picker.ql-font .ql-picker-options .ql-picker-item:not([data-value="neue-plak"]) {
+    display: none !important;
+  }

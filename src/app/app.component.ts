@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import Quill from 'quill';
 
 // Configuración de fuentes personalizadas para Quill
@@ -10,12 +10,13 @@ Quill.register(Font, true);
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'Editor de Texto Enriquecido con Quill (Neue Plak)';
   
-  // Configuración del editor
+  // Configuración del editor con solo colores corporativos
   quillConfig = {
     modules: {
       toolbar: {
@@ -28,8 +29,13 @@ export class AppComponent implements OnInit, AfterViewInit {
           [{ 'indent': '-1'}, { 'indent': '+1' }],
           [{ 'direction': 'rtl' }],
           [{ 'size': ['small', false, 'large', 'huge'] }],
-          [{ 'font': ['neue-plak'] }], // Limitar a nuestra fuente
-          [{ 'color': [] }, { 'background': [] }],
+          [{ 'font': ['neue-plak'] }],
+          [{ 'color': ['#ffffff', '#212322', '#007bff', '#dc3545', '#28a745', 
+                      '#ffc107', '#17a2b8', '#fd7e14', '#6610f2', '#6f42c1', 
+                      '#e83e8c', '#20c997', '#813788', '#f8f9fa', '#adb5bd', '#212529'] }, 
+           { 'background': ['#ffffff', '#212322', '#007bff', '#dc3545', '#28a745', 
+                           '#ffc107', '#17a2b8', '#fd7e14', '#6610f2', '#6f42c1', 
+                           '#e83e8c', '#20c997', '#813788', '#f8f9fa', '#adb5bd', '#212529'] }],
           [{ 'align': [] }],
           ['clean'],
           ['link', 'image']
@@ -45,7 +51,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor() { }
   
   ngOnInit() {
-    console.log('Editor inicializado con la fuente Neue Plak');
+    console.log('Editor inicializado con la fuente Neue Plak y colores corporativos');
   }
   
   ngAfterViewInit() {
@@ -57,16 +63,22 @@ export class AppComponent implements OnInit, AfterViewInit {
   
   configurarFuente() {
     try {
-      // Configurar el selector de fuentes
+      // Configurar el selector de fuentes para mostrar "Neue Plak"
       const fontSelector = document.querySelector('.ql-font.ql-picker');
       if (fontSelector) {
         const fontLabel = fontSelector.querySelector('.ql-picker-label');
         if (fontLabel) {
           fontLabel.setAttribute('data-value', 'neue-plak');
-          fontLabel.textContent = 'Neue Plak';
+          
+          // Limpiar cualquier texto existente
+          Array.from(fontLabel.childNodes).forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE) {
+              node.nodeValue = '';
+            }
+          });
         }
-        
-        // Establecer como seleccionada
+
+        // Configurar los elementos del dropdown
         const fontItems = fontSelector.querySelectorAll('.ql-picker-item');
         fontItems.forEach(item => {
           if (item.getAttribute('data-value') === 'neue-plak') {
@@ -90,9 +102,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   onEditorContentChange(event: any) {
     this.editorContent = event.html;
     console.log('Editor content changed:', this.editorContent);
-    
-    // Asegurarnos que la fuente se mantenga
-    this.configurarFuente();
   }
   
   // Método para guardar el contenido
