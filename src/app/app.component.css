@@ -84,3 +84,10 @@
 .ql-picker-label::after {
   content: none !important;
 }
+
+
+/* Ocultar el selector de fuentes ya que solo usamos Neue Plak */
+/* .ql-font.ql-picker {
+  display: none !important;
+}
+ */
