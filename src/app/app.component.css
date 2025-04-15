@@ -14,6 +14,7 @@
 /* Forzar el uso de Neue Plak en el editor */
 .ql-editor {
   font-family: 'Neue Plak', sans-serif !important;
+  font-size: 22pt !important; /* Fuerza el tamaño base */
 }
 
 /* Asegurar que todo el contenido dentro del editor use Neue Plak */
@@ -91,3 +92,48 @@
   display: none !important;
 }
  */
+
+ /* TODO: Para probar el tamaño de la fuente: */
+ /* Estilos para los tamaños de fuente personalizados */
+.ql-snow .ql-picker.ql-size .ql-picker-label::before,
+.ql-snow .ql-picker.ql-size .ql-picker-item::before {
+  content: attr(data-value) !important;
+}
+
+/* Define los tamaños específicos */
+.ql-editor .ql-size-8pt {
+  font-size: 8pt !important;
+}
+.ql-editor .ql-size-9pt {
+  font-size: 9pt !important;
+}
+.ql-editor .ql-size-10pt {
+  font-size: 10pt !important;
+}
+.ql-editor .ql-size-11pt {
+  font-size: 11pt !important;
+}
+.ql-editor .ql-size-12pt {
+  font-size: 12pt !important;
+}
+.ql-editor .ql-size-14pt {
+  font-size: 14pt !important;
+}
+.ql-editor .ql-size-16pt {
+  font-size: 16pt !important;
+}
+.ql-editor .ql-size-18pt {
+  font-size: 18pt !important;
+}
+.ql-editor .ql-size-20pt {
+  font-size: 20pt !important;
+}
+.ql-editor .ql-size-24pt {
+  font-size: 24pt !important;
+}
+.ql-editor .ql-size-30pt {
+  font-size: 30pt !important;
+}
+.ql-editor .ql-size-36pt {
+  font-size: 36pt !important;
+}

@@ -1,20 +1,24 @@
 <div class="editor-container">
   <h1>{{ title }}</h1>
-  
+
   <div class="editor-wrapper">
     <quill-editor
       [(ngModel)]="editorContent"
       [modules]="quillConfig.modules"
       [styles]="{height: '250px'}"
-      [theme]="'snow'"
+
+
+
       (onContentChanged)="onEditorContentChange($event)">
     </quill-editor>
+
+    <!-- [theme]="'snow'" -->
   </div>
-  
+
   <div class="editor-actions">
     <button (click)="saveContent()" class="save-button">Guardar contenido</button>
   </div>
-  
+
   <div class="content-preview" *ngIf="editorContent">
     <h3>Vista previa del contenido</h3>
     <div [innerHTML]="editorContent"></div>

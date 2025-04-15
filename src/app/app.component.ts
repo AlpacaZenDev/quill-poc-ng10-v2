@@ -7,6 +7,14 @@ const Font = Quill.import('formats/font');
 Font.whitelist = ['neue-plak'];
 Quill.register(Font, true);
 
+// TODO: Para probar el tamaño de fuente.
+// Personalizar opciones de tamaño
+const Size = Quill.import('attributors/style/size');
+// Definir tamaños numéricos personalizados en puntos
+Size.whitelist = ['8pt', '9pt', '10pt', '11pt', '12pt', '14pt', '16pt', '18pt', '20pt', '24pt', '30pt', '36pt'];
+Quill.register(Size, true);
+// TODO: End
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,7 +36,9 @@ export class AppComponent implements OnInit, AfterViewInit {
           [{ 'script': 'sub'}, { 'script': 'super' }],
           [{ 'indent': '-1'}, { 'indent': '+1' }],
           [{ 'direction': 'rtl' }],
-          [{ 'size': ['small', false, 'large', 'huge'] }],
+          // TODO: Para probar el tamaño de fuente:
+          [{ 'size': ['8pt', '9pt', '10pt', '11pt', '12pt', '14pt', '16pt', '18pt', '20pt', '24pt', '30pt', '36pt'] }],
+          // [{ 'size': ['small', false, 'large', 'huge'] }],
           [{ 'font': ['neue-plak'] }],
           [{ 'color': ['#ffffff', '#212322', '#007bff', '#dc3545', '#28a745',
                       '#ffc107', '#17a2b8', '#fd7e14', '#6610f2', '#6f42c1',
@@ -43,6 +53,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     },
     theme: 'snow'
+
   };
 
   // Contenido del editor
@@ -109,4 +120,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     console.log('Contenido guardado:', this.editorContent);
     // Aquí puedes implementar la lógica para guardar el contenido
   }
+
+/*   // TODO: Para probar el tamaño de fuente:
+  onEditorCreated(editor) {
+    // Establece el formato predeterminado al crear el editor
+    editor.format('size', '22pt');
+
+    // También podemos asegurarnos de que la fuente está aplicada
+    editor.format('font', 'neue-plak');
+  } */
 }
