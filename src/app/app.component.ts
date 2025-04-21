@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import Quill from 'quill';
 
 // Configuración de fuentes personalizadas para Quill
@@ -7,11 +7,11 @@ const Font = Quill.import('formats/font');
 Font.whitelist = ['neue-plak'];
 Quill.register(Font, true);
 
-// TODO: Para probar el tamaño de fuente.
+// TODO: Selector del tamaño de fuente:
 // Personalizar opciones de tamaño
 const Size = Quill.import('attributors/style/size');
 // Definir tamaños numéricos personalizados en puntos
-Size.whitelist = ['8pt', '9pt', '10pt', '11pt', '12pt', '14pt', '16pt', '18pt', '20pt', '24pt', '30pt', '36pt'];
+Size.whitelist = ['8px', '9px', '10px', '11px', '12px', '14px', '16px', '18px', '20px', '24px'];
 Quill.register(Size, true);
 // TODO: End
 
@@ -21,7 +21,7 @@ Quill.register(Size, true);
   styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'Editor de Texto Enriquecido con Quill';
 
   // Configuración del editor con solo colores corporativos
@@ -30,14 +30,14 @@ export class AppComponent implements OnInit, AfterViewInit {
       toolbar: {
         container: [
           ['bold', 'italic', 'underline', 'strike'],
-          ['blockquote', 'code-block'],
+          ['blockquote'],
           [{ 'header': 1 }, { 'header': 2 }],
           [{ 'list': 'ordered'}, { 'list': 'bullet' }],
           [{ 'script': 'sub'}, { 'script': 'super' }],
           [{ 'indent': '-1'}, { 'indent': '+1' }],
           [{ 'direction': 'rtl' }],
-          // TODO: Para probar el tamaño de fuente:
-          [{ 'size': ['8pt', '9pt', '10pt', '11pt', '12pt', '14pt', '16pt', '18pt', '20pt', '24pt', '30pt', '36pt'] }],
+          // TODO: Selector del tamaño de fuente:
+          [{ 'size': ['8px', '9px', '10px', '11px', '12px', '14px', '16px', '18px', '20px', '24px'] }],
           // [{ 'size': ['small', false, 'large', 'huge'] }],
           [{ 'font': ['neue-plak'] }],
           [{ 'color': ['#ffffff', '#212322', '#007bff', '#dc3545', '#28a745',
@@ -62,57 +62,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('Editor inicializado con la fuente Neue Plak y colores corporativos');
-  }
-
-  ngAfterViewInit() {
-    // Ejecutar después de que la vista se ha inicializado completamente
-/*     setTimeout(() => {
-      this.configurarFuente();
-    }, 500); */
-  }
-
-  configurarFuente() {
-/*     try {
-      // Configurar el selector de fuentes para mostrar "Neue Plak"
-      const fontSelector = document.querySelector('.ql-font.ql-picker');
-      if (fontSelector) {
-        const fontLabel = fontSelector.querySelector('.ql-picker-label');
-        if (fontLabel) {
-          fontLabel.setAttribute('data-value', 'neue-plak');
-
-          // Limpiar cualquier texto existente
-          Array.from(fontLabel.childNodes).forEach(node => {
-            if (node.nodeType === Node.TEXT_NODE) {
-              node.nodeValue = '';
-            }
-          });
-        }
-
-        // Configurar los elementos del dropdown
-        const fontItems = fontSelector.querySelectorAll('.ql-picker-item');
-        fontItems.forEach(item => {
-          if (item.getAttribute('data-value') === 'neue-plak') {
-            item.setAttribute('data-selected', 'true');
-            item.textContent = 'Neue Plak';
-          }
-        });
-      }
-
-      // Aplicar la fuente al contenido existente
-      const editor = document.querySelector('.ql-editor');
-      if (editor) {
-        editor.classList.add('ql-font-neue-plak');
-      }
-    } catch (error) {
-      console.error('Error al configurar la fuente:', error);
-    } */
+    console.log('Editor personalizado');
   }
 
   // Método para obtener el contenido del editor
   onEditorContentChange(event: any) {
     this.editorContent = event.html;
-    console.log('Editor content changed:', this.editorContent);
+    console.log('Contenido del editor modificado:', this.editorContent);
   }
 
   // Método para guardar el contenido
@@ -121,12 +77,5 @@ export class AppComponent implements OnInit, AfterViewInit {
     // Aquí puedes implementar la lógica para guardar el contenido
   }
 
-/*   // TODO: Para probar el tamaño de fuente:
-  onEditorCreated(editor) {
-    // Establece el formato predeterminado al crear el editor
-    editor.format('size', '22pt');
-
-    // También podemos asegurarnos de que la fuente está aplicada
-    editor.format('font', 'neue-plak');
-  } */
 }
+
