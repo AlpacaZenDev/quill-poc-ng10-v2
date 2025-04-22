@@ -18,9 +18,12 @@
   <div class="editor-actions">
     <button (click)="saveContent()" class="save-button">Guardar contenido</button>
   </div>
-
-  <div class="content-preview" *ngIf="editorContent">
+<!-- FIX: Corrección de la sanitización del código -->
+<!--   <div class="content-preview" *ngIf="editorContent">
     <h3>Vista previa del contenido</h3>
     <div [innerHTML]="editorContent"></div>
-  </div>
+  </div> -->
+  <div class="content-preview" *ngIf="editorContent">
+    <h3>Vista previa del contenido</h3>
+    <div [innerHTML]="safeEditorContent"></div>
 </div>

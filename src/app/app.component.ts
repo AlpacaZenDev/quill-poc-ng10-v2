@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import Quill from 'quill';
 
 // Configuración de fuentes personalizadas para Quill
@@ -58,16 +59,23 @@ export class AppComponent implements OnInit {
 
   // Contenido del editor
   editorContent = '';
+  safeEditorContent: SafeHtml = ''; // FIX: corrección de error en vista previa
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { } // FIX: corrección de error en vista previa
 
   ngOnInit() {
     console.log('Editor personalizado');
   }
 
   // Método para obtener el contenido del editor
+  // FIX: Corrección de error al obtener el contenido
+  /* onEditorContentChange(event: any) {
+    this.editorContent = event.html;
+    console.log('Contenido del editor modificado:', this.editorContent);
+  } */
   onEditorContentChange(event: any) {
     this.editorContent = event.html;
+    this.safeEditorContent = this.sanitizer.bypassSecurityTrustHtml(this.editorContent);
     console.log('Contenido del editor modificado:', this.editorContent);
   }
 
