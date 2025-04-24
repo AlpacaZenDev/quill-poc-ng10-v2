@@ -27,7 +27,8 @@ import { AppComponent } from './app.component';
           [{ 'color': [] }, { 'background': [] }],
           [{ 'align': [] }],
           ['clean'],
-          ['link', 'image']
+          ['link', 'image'],
+          ['divider'] // Agregar el divisor
         ]
       }
     })

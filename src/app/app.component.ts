@@ -16,6 +16,14 @@ Size.whitelist = ['8px', '9px', '10px', '11px', '12px', '14px', '16px', '18px', 
 Quill.register(Size, true);
 // TODO: End
 
+// NOTE: Custom blot para divisor <hr>
+const BlockEmbed = Quill.import('blots/block/embed');
+class DividerBlot extends BlockEmbed {
+  static blotName = 'divider';
+  static tagName = 'hr';
+}
+Quill.register(DividerBlot);
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,7 +31,7 @@ Quill.register(Size, true);
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  title = 'Editor de Texto Enriquecido con Quill';
+  title = 'Quill: Editor de Texto Enriquecido';
 
   // Configuración del editor con solo colores corporativos
   quillConfig = {
@@ -49,8 +57,18 @@ export class AppComponent implements OnInit {
                            '#e83e8c', '#20c997', '#813788', '#f8f9fa', '#adb5bd', '#212529'] }],
           [{ 'align': [] }],
           ['clean'],
-          ['link', 'image']
-        ]
+          ['link', 'image'],
+          ['divider'] // NOTE: Botón para insertar el divisor
+        ],
+        handlers: {
+          // NOTE: Handler personalizado para insertar el divisor
+          divider: function(this: any) {
+            const range = this.quill.getSelection(true);
+            this.quill.insertEmbed(range.index, 'divider', true, Quill.sources.USER);
+            // Opcional: mueve el cursor después del divisor
+            this.quill.setSelection(range.index + 1, Quill.sources.SILENT);
+          }
+        }
       }
     },
     theme: 'snow'
@@ -59,16 +77,16 @@ export class AppComponent implements OnInit {
 
   // Contenido del editor
   editorContent = '';
-  safeEditorContent: SafeHtml = ''; // FIX: corrección de error en vista previa
+  safeEditorContent: SafeHtml = ''; // NOTE: corrección de error en vista previa
 
-  constructor(private sanitizer: DomSanitizer) { } // FIX: corrección de error en vista previa
+  constructor(private sanitizer: DomSanitizer) { } // NOTE: corrección de error en vista previa
 
   ngOnInit() {
     console.log('Editor personalizado');
   }
 
   // Método para obtener el contenido del editor
-  // FIX: Corrección de error al obtener el contenido
+  // NOTE: Corrección de error al obtener el contenido
   /* onEditorContentChange(event: any) {
     this.editorContent = event.html;
     console.log('Contenido del editor modificado:', this.editorContent);
