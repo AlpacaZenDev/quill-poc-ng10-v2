@@ -24,6 +24,21 @@ class DividerBlot extends BlockEmbed {
 }
 Quill.register(DividerBlot);
 
+// NOTE: Custom blot para cuadro de texto
+const Block = Quill.import('blots/block');
+class TextBoxBlot extends Block {
+  static blotName = 'textbox';
+  static className = 'ql-textbox';
+  static tagName = 'div';
+
+  static create(value: any) {
+    const node = super.create(value);
+    node.setAttribute('class', 'ql-textbox');
+    return node;
+  }
+}
+Quill.register(TextBoxBlot);
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -58,7 +73,8 @@ export class AppComponent implements OnInit {
           [{ 'align': [] }],
           ['clean'],
           ['link', 'image'],
-          ['divider'] // NOTE: Botón para insertar el divisor
+          ['divider'], // NOTE: Botón para insertar el divisor
+          ['textbox'] // NOTE: Botón para cuadro de texto
         ],
         handlers: {
           // NOTE: Handler personalizado para insertar el divisor
@@ -67,6 +83,14 @@ export class AppComponent implements OnInit {
             this.quill.insertEmbed(range.index, 'divider', true, Quill.sources.USER);
             // Opcional: mueve el cursor después del divisor
             this.quill.setSelection(range.index + 1, Quill.sources.SILENT);
+          },
+          // NOTE: Handler para insertar cuadro de texto
+          textbox: function(this: any) {
+            const range = this.quill.getSelection(true);
+            this.quill.insertText(range.index, '\n', Quill.sources.USER);
+            this.quill.insertEmbed(range.index + 1, 'textbox', true, Quill.sources.USER);
+            this.quill.insertText(range.index + 2, '\n', Quill.sources.USER);
+            this.quill.setSelection(range.index + 2, Quill.sources.SILENT);
           }
         }
       }
